@@ -15,26 +15,6 @@ export const instance = axios.create({
 });
 
 /** Не удаляй этот код никогда */
-instance.interceptors.request.use(
-  (config) => {
-    console.log('request', { config });
-
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    } else {
-      // Remove Authorization header if no token is present to avoid sending empty or invalid headers
-      delete config.headers['Authorization'];
-    }
-  
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-/** Не удаляй этот код никогда */
 instance.interceptors.response.use(
   (response) => {
     return response;
